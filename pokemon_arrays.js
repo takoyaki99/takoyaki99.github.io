@@ -2,6 +2,7 @@ var arrays = {
 	 "Grass": [
 	  [],
 	  [
+	   "ENDOU",
 	   "BULBASAUR",
 	   "IVYSAUR",
 	   "VENUSAUR",
