@@ -1,11 +1,1736 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<title>Ultimate Favorite Pokemon Picker</title>
+<meta name="description" content="Find your favorite Pokemon of each generation, each type, and of all time.">
+<meta name="keywords" content="Ultimate, Favorite, Pokemon, Pokémon, Picker">
+<meta name="author" content="Cajun">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+@font-face {
+    font-family: "Copenhagen Grotesk";
+    src: local("Copenhagen Grotesk"), url("David Engelby Foundry - CopenhagenGrotesk.ttf") format("truetype");
+}
+#grid-wrapper {
+	position: absolute;
+	top: 35px;
+	left: 0px;
+}
+#typebar {
+	position: absolute;
+	left: 98px;
+	top: 0px;
+	z-index: 3;
+}
+img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.back {
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+#final {
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+#button-wrapper {
+  top: 1572px;
+  left: 0px;
+  height: 50px;
+  position: absolute;
+  width: 1000px;
+}
+#btnPrint {
+	display: inline-block;
+	height: 50px;
+}
+#btnExport {
+	display: inline-block;
+	height: 50px;
+}
+#btnLoad {
+	display: inline-block;
+	height: 50px;
+}
+#btnReset {
+  top: 1572px;
+  left: 490px;
+  height: 50px;
+}
+#import {
+  top: 1640px;
+  position: absolute;
+  z-index: 4;
+}
+#credits {
+	top: 1610px;
+	left: 600px;
+	width: 600px;
+	position: absolute;
+}
+.bubble {
+  z-index: 0;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  border-radius: 25px;
+  background: #b4b4b4;
+	border-style: solid;
+	border-width: 2px;
+}
+.aura {
+  z-index: 0;
+  position: absolute;
+  height: 96px;
+  width: 96px;
+}
+#actual-btn {
+  z-index: 6;
+  position: absolute;
+  top: 1410px;
+  left: 1660px;
+}
+#charm {
+  z-index: 1;
+  position: absolute;
+  left: 25px;
+  top: 1110px;
+  cursor: pointer;
+}
+#teamInstructions {
+  top: 1460px;
+  left: 7px;
+  width: 480px;
+}
+.preview {
+  z-index: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+</style>
+<style id="selection-placement">
+.translate-wrapper {
+	position: absolute;
+	width: 200px;
+	height: 100px;
+}
+.grid-text {
+	font-family: "Copenhagen Grotesk";
+	position: absolute;
+	color: white;
+	font-size: 27;
+	z-index: 3;
+	text-align: center;
+	width: inherit;
+	bottom: 35%;
+}
+.msg-text {
+	font-family: "Copenhagen Grotesk";
+	position: absolute;
+	color: white;
+	font-size: 24;
+	z-index: 3;
+	text-align: left;
+	width: inherit;
+	bottom: 35%;
+}
+.selectionBox {
+	cursor: pointer;
+	position: absolute;
+	z-index: 2;
+}
+.gen-1-box {
+	top: 101px;
+}
+.gen-2-box {
+	top: 200px;
+}
+.gen-3-box {
+	top: 299px;
+}
+.gen-4-box {
+	top: 398px;
+}
+.gen-5-box {
+	top: 497px;
+}
+.gen-6-box {
+	top: 596px;
+}
+.gen-7-box {
+	top: 695px;
+}
+.gen-8-box {
+	top: 794px;
+}
+.gen-9-box {
+	top: 893px;
+}
+.fav-type-box {
+	top: 992px;
+}
+.bottom-row1-box {
+	top: 1210px;
+}
+.bottom-row2-box {
+	top: 1409px;
+}
+.bottom-row1-label {
+	top: 1132px;
+}
+.bottom-row2-label {
+	top: 1331px;
+}
+.type-1-box {
+	left: 100px;
+}
+.type-2-box {
+	left: 199px;
+}
+.type-3-box {
+	left: 298px;
+}
+.type-4-box {
+	left: 397px;
+}
+.type-5-box {
+	left: 496px;
+}
+.type-6-box {
+	left: 595px;
+}
+.type-7-box {
+	left: 694px;
+}
+.type-8-box {
+	left: 793px;
+}
+.type-9-box {
+	left: 892px;
+}
+.type-10-box {
+	left: 991px;
+}
+.type-11-box {
+	left: 1090px;
+}
+.type-12-box {
+	left: 1189px;
+}
+.type-13-box {
+	left: 1288px;
+}
+.type-14-box {
+	left: 1387px;
+}
+.type-15-box {
+	left: 1486px;
+}
+.type-16-box {
+	left: 1585px;
+}
+.type-17-box {
+	left: 1684px;
+}
+.type-18-box {
+	left: 1783px;
+}
+.type-19-box {
+	left: 1882px;
+}
+.type-20-box {
+	left: 1981px;
+}
+.type-21-box {
+	left: 2080px;
+}
+.type-22-box {
+	left: 2179px;
+}
+.team-top {
+	top: 1264px;
+}
+.team-bottom {
+	top: 1363px;
+}
+.team-left {
+	left: 94px;
+}
+.team-mid {
+	left: 193px;
+}
+.team-right {
+	left: 292px;
+}
+.bottom-box-1 {
+	left: 521px;
+}
+.bottom-box-2 {
+	left: 703px;
+}
+.bottom-box-3 {
+	left: 885px;
+}
+.bottom-box-4 {
+	left: 1065px;
+}
+.bottom-box-5 {
+	left: 1248px;
+}
+.bottom-box-6 {
+	left: 1430px;
+}
+.bottom-box-7 {
+	left: 1612px;
+}
+.bottom-box-8 {
+	left: 1794px;
+}
+.bottom-box-9 {
+	left: 1976px;
+}
+.bottom-box-10 {
+	left: 2158px;
+}
+.bottom-box-1-label {
+	left: 469px;
+}
+.bottom-box-2-label {
+	left: 651px;
+}
+.bottom-box-3-label {
+	left: 833px;
+}
+.bottom-box-4-label {
+	left: 1015px;
+}
+.bottom-box-5-label {
+	left: 1196px;
+}
+.bottom-box-6-label {
+	left: 1378px;
+}
+.bottom-box-7-label {
+	left: 1560px;
+}
+.bottom-box-8-label {
+	left: 1742px;
+}
+.bottom-box-9-label {
+	left: 1924px;
+}
+.bottom-box-10-label {
+	left: 2106px;
+}
+#type-wrapper {
+  top: 0px;
+  left: 98px;
+  height: 100px;
+  position: absolute;
+  width: 2200px;
+}
+.type-box {
+	width: 99px;
+	height: 100px;
+	display: inline-block;
+}
+.type-text {
+	filter: drop-shadow(2px 2px 0px #000);
+	font-family: "Copenhagen Grotesk";
+	color: white;
+	font-size: 25;
+	z-index: 3;
+	text-align: center;
+	width: inherit;
+	position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+</style>
+<style id="spinda">
+#spinda-help {
+  color: #000000;
+  position: absolute;
+  top: 1577px;
+  left: 1511px;
+  display: block;
+  width: 500px;
+  z-index: 2;
+}
+#spinda {
+  z-index: 2;
+  position: absolute;
+  top: 1409px;
+  left: 1612px;
+}
+.spinda-spot {
+  z-index: 3;
+  position: absolute;
+  top: 1409px;
+  left: 1612px;
+}
+#spinda2 {
+  z-index: 4;
+  position: absolute;
+  top: 1409px;
+  left: 1612px;
+}
+#spinda-cover {
+  z-index: 5;
+  position: absolute;
+  top: 1409px;
+  left: 1612px;
+}
+#spot1x {
+  z-index: 2;
+  position: absolute;
+  top: 1409px;
+  left: 1562px;
+  width: 48px;
+}
+#spot1y {
+  z-index: 2;
+  position: absolute;
+  top: 1431px;
+  left: 1562px;
+  width: 48px;
+}
+#spot2x {
+  z-index: 2;
+  position: absolute;
+  top: 1409px;
+  left: 1708px;
+  width: 48px;
+}
+#spot2y {
+  z-index: 2;
+  position: absolute;
+  top: 1431px;
+  left: 1708px;
+  width: 48px;
+}
+#spot3x {
+  z-index: 2;
+  position: absolute;
+  top: 1461px;
+  left: 1562px;
+  width: 48px;
+}
+#spot3y {
+  z-index: 2;
+  position: absolute;
+  top: 1483px;
+  left: 1562px;
+  width: 48px;
+}
+#spot4x {
+  z-index: 2;
+  position: absolute;
+  top: 1461px;
+  left: 1708px;
+  width: 48px;
+}
+#spot4y {
+  z-index: 2;
+  position: absolute;
+  top: 1483px;
+  left: 1708px;
+  width: 48px;
+}
+#btnRandom {
+  z-index: 3;
+  position: absolute;
+  top: 1505px;
+  left: 1622px;
+}
+</style>
+<!--
+	Tried to make the axis sticky with jQuery
+	but doesn't stick properly on mobile
+	doesn't seem to account for zoom so basically useless
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$(window).scroll(function(){
+			$('#typebar').css({
+				'top': Math.min(891, $(window).scrollTop())
+			});
+			$('#genbar').css({
+				'left': Math.min(2078, $(window).scrollLeft())
+			});
+		});
+	});
+</script>
+-->
+<script src="pokemon_arrays.js"></script>
+<script src="translate.js"></script>
+<script language="JavaScript">
+	var domlink = window.location.protocol + "//" + window.location.host + "/";
+	var type_order = ["", "Normal", "Fire", "Water", "Grass", "Electric", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy", "Starter", "Gimmick", "Legendary", "Favorite"];
+	var type_eles = ["Normal", "Fire", "Water", "Grass", "Electric", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy", "Starter", "GimmickForm", "Legend", "FavAlone"];
+	var other_order = ["", "team1", "team2", "team3", "team4", "team5", "team6", "Bird", "Critter", "RegionalBug", "Pseudo", "Pikaclone", "Eevee", "Fossil", "Regional", "GMax", "Box", "Mythical", "Ultra", "Paradox", "Types", "PokeBall", "Spinda", "Vivillon", "Alcremie", "alc0", "alc7", "alc14", "alc21", "alc28", "alc35", "alc42", "alc49", "alc56", "Baby", "NewEvolution"];
+	var zerogen_coords = [
+		[],
+		[94, 1264], [199, 1264], [298, 1264],
+		[94, 1363], [199, 1363], [298, 1363],
+		[521, 1210], [703, 1210], [885, 1210], [1065, 1210], [1248, 1210], [1430, 1210], [1612, 1210], [1794, 1210], [1976, 1210],
+		[521, 1409], [703, 1409], [885, 1409], [1065, 1409], [1248, 1409], [1430, 1409], [1612, 1409], [1794, 1409], [1976, 1409],
+		[1976, 1409], [1976, 1409], [1976, 1409], [1976, 1409], [1976, 1409], [1976, 1409], [1976, 1409], [1976, 1409], [1976, 1409],
+		[2158, 1210], [2158, 1409]
+	]
+
+	var choices = [];
+	var currently_previewing = [];
+	var currently_selecting = null;
+	var shinyCharm = false;
+	var spriteFile = "Front";
+	var teamSelect = false;
+	var toppings = false;
+
+	var spot_map = {
+		"spot1x": "spot1",
+		"spot1y": "spot1",
+		"spot2x": "spot2",
+		"spot2y": "spot2",
+		"spot3x": "spot3",
+		"spot3y": "spot3",
+		"spot4x": "spot4",
+		"spot4y": "spot4"
+	}
+	var cookie_names = [
+		"gen0", "gen1", "gen2", "gen3", "gen4",
+		"gen5", "gen6", "gen7", "gen8", "gen9",
+		"favs", "spinda"
+	]
+	var swap = {"Front": "Shiny", "Shiny": "Front"};
+
+	function resetChoices() {
+		choices = [[]];
+		for(var c in other_order)
+			choices[0].push("")
+		for(var i=1; i<=10; i++) {
+			choices.push([]);
+			for(var t in type_order) {
+				choices[i].push("")
+			}
+		}
+		choices[0][22] = "SPINDA"
+	}
+	resetChoices();
+	function activateShiny() {
+		shinyCharm = !shinyCharm;
+		//show tooltip
+		ele = document.getElementById('ShinyCharm2');
+		if(ele.style.zIndex == 0) {
+			ele.style.zIndex = 4;
+		}else{
+			ele.style.zIndex = 0;
+		}
+	}
+	function fullShiny() {
+		if(spriteFile != "Shiny") {
+			setCookie("shiny", "shiny");
+		}else{
+			deleteCookie("shiny");
+		}
+		for(var g=0; g<11; g++) {
+			for(var t=0; t<23; t++) {
+				ele = document.getElementById('box'+g+"_"+t);
+				if(ele == null)
+					continue
+				ele.src = ele.src.replace(spriteFile, swap[spriteFile])
+			}
+			writeCookie(g);
+		}
+		spriteFile = swap[spriteFile];
+		activateShiny();
+	}
+	function toggleShiny(gen, type) {
+		ele = document.getElementById('box'+gen+"_"+type);
+		if(ele.src.match(/Front/)) {
+			ele.src = ele.src.replace(/Front/, "Shiny");
+		}else{
+			ele.src = ele.src.replace(/Shiny/, "Front");
+		}
+		writeCookie(gen);
+	}
+	function shinySpinda() {
+		if(shinyCharm) {
+			toggleShiny(0, 22);
+			var ele = document.getElementById('spinda2');
+			if(ele.src.match(/Front/)) {
+				ele.src = ele.src.replace(/Front/, "Shiny");
+			}else{
+				ele.src = ele.src.replace(/Shiny/, "Front");
+			}
+			for(var i=1; i<5; i++) {
+				ele = document.getElementById('spot'+i);
+				if(ele.src.match(/Front/)) {
+					ele.src = ele.src.replace(/Front/, "Shiny");
+				}else{
+					ele.src = ele.src.replace(/Shiny/, "Front");
+				}
+			}
+		}
+	}
+	
+	function bubbleRows(count) {
+		if(count == 6) {
+			return [3, 3];
+		}else if(count == 12) {
+			return [4, 4, 4];
+		}
+		var column_soft_cap = 5;
+		var row_soft_cap = 5;
+		var column_hard_cap = 12;
+		var row_hard_cap = 5;
+		
+		var soft_size = column_soft_cap * row_soft_cap;
+		var hard_size = column_hard_cap * row_hard_cap;
+		
+		var row_sizes = [];
+		
+		if(count > hard_size) {
+			var excess = count - hard_size;
+			var nec_rows = Math.ceil(excess / column_hard_cap);
+			var row_break_cap = row_hard_cap + nec_rows
+			var holes = (column_hard_cap * nec_rows) - excess;
+			var extra_cols = Math.ceil(holes/row_break_cap);
+			var over = (extra_cols*row_break_cap) - holes
+			/*
+				so if given 61
+				excess = 1, nec_rows = ceil(1/12) = 1
+				and there are 11 new empty spots
+				partial/empty columns = ceil(holes/rows) = 2
+				we can remove 2 columns, leaving -1 empty slot
+				then readd those in a partial 11th column
+				11 - 10 - 10 - 10 - 10 - 10
+				
+				if given 70
+				excess = 10, nec_rows = ceil(10/12) = 1
+				holes = 2, extra_cols = 1, over = 3
+				12 - 12 - 12 - 11 - 11 - 11
+				
+				if given 73
+				excess = 13, nec_rows = ceil(13/12) = 2
+				holes = 11, extra_cols = 2, over = 3
+				11 - 11 - 11 - 10 - 10 - 10 - 10
+				
+			*/
+			for(var i=0; i<row_break_cap; i++) {
+				var cols = column_hard_cap - extra_cols;
+				if(over > 0) {
+					cols++;
+					over--;
+				}
+				row_sizes.push(cols);
+			}
+			return row_sizes;
+		}
+		else if(count <= soft_size) {
+			// this fits in the 5x5
+			var over = count % column_soft_cap;
+			var full_rows = Math.floor(count / column_soft_cap);
+			if(full_rows < 1) {
+				// short row
+				return [count];
+			}
+			else if(over > 0 && over < full_rows) {
+				// prefer adding 1 to some complete rows
+				// than adding a new very short row
+				for(var i=1; i<full_rows+1; i++) {
+					var cols = column_soft_cap;
+					if(i != full_rows) {
+						cols++;
+						over--;
+					}else{
+						cols += over;
+					}
+					row_sizes.push(cols);
+				}
+				return row_sizes;
+			}
+			else{
+				for(var i=0; i<full_rows; i++)
+					row_sizes.push(column_soft_cap);
+				if(over > 0)
+					row_sizes.push(over);
+				return row_sizes;
+			}
+		}else{
+			var has_over = (over != 0);
+			var full_columns = Math.floor(count / row_hard_cap);
+			var over = count % row_hard_cap;
+			for(var i=1; i<=row_hard_cap; i++) {
+				var cols = full_columns;
+				if(has_over) {
+					if(i != row_hard_cap) {
+						cols++;
+						over--;
+					}else{
+						cols += over;
+					}
+				}
+				row_sizes.push(cols);
+			}
+			return row_sizes;
+		}
+	}
+	function openBox(gen, type) {
+		var type_arr = null;
+		if(shinyCharm) {
+			toggleShiny(gen, type);
+			return;
+		}else if(teamSelect) {
+			// copy to team
+			choices[currently_selecting[0]][currently_selecting[1]] = choices[gen][type]
+			var ele = document.getElementById('box'+gen+"_"+type);
+			var ele2 = document.getElementById('box'+currently_selecting[0]+"_"+currently_selecting[1]);
+			ele2.src = ele.src;
+			currently_selecting = null;
+			teamSelect = false;
+			writeCookie(0);
+			return;
+		}else if(gen == 0 && type < 7) {
+			// pick a team slot
+			teamSelect = true;
+			currently_selecting = [gen, type];
+			document.getElementById('box'+currently_selecting[0]+"_"+currently_selecting[1]).src = "./picking.png";
+			return;
+		}
+		if(currently_selecting != null) {
+			// if we've clicked the same box, close it and exit
+			if(currently_selecting[0] == gen && currently_selecting[1] == type) {
+				closeBox();
+				return;
+			}
+			// otherwise close any open boxes and keep going
+			closeBox();
+		}
+		currently_selecting = [gen, type];
+		if(gen == 0) {
+			// bottom stuff
+			var box = other_order[type];
+			if(arrays[box]) {
+				currently_previewing = arrays[box];
+				if(box == "Types")
+					type_arr = calcTypes();
+			}
+		}else if(gen == 10 && type == 22) {
+			// super favorite
+			currently_previewing = [];
+			for(var c=1; c<choices.length; c++) {
+				start = 22;
+				if(c == 10)
+					start = 1;
+				for(var i=start; i<23; i++) {
+					if(choices[c][i] == "" || choices[c][i] == undefined)
+						continue;
+					if(currently_previewing.includes(choices[c][i]))
+						continue;
+					currently_previewing.push(choices[c][i])
+				}
+			}
+		}else if(gen == 10) {
+			// favorite for a type
+			currently_previewing = [];
+			for(var g in choices) {
+				if(g == gen || g == 0)
+					continue;
+				if(choices[g][type] == "" || choices[g][type] == undefined)
+					continue;
+				if(currently_previewing.includes(choices[g][type]))
+					continue;
+				currently_previewing.push(choices[g][type]);
+			}
+		}else if(type == 22) {
+			// favorite for a gen
+			currently_previewing = [];
+			for(var m in choices[gen]) {
+				if(m == type)
+					continue;
+				if(choices[gen][m] == "" || choices[gen][m] == undefined)
+					continue;
+				if(currently_previewing.includes(choices[gen][m]))
+					continue;
+				currently_previewing.push(choices[gen][m]);
+			}
+		}else{
+			currently_previewing = arrays[type_order[type]][gen];
+		}
+		/*
+		var maxCols = Math.max(Math.ceil(currently_previewing.length/5), 5)
+		var maxRows = 5
+		if(currently_previewing.length <= 20)
+			maxRows = Math.ceil(currently_previewing.length/5)
+		var underflow = maxCols-(currently_previewing.length%maxCols)
+		if(underflow == maxCols)
+			underflow = 0
+		var bubble_img = "./bubble/"+maxRows+"r.png";
+		if(maxCols > 5) {
+			bubble_img = "./bubble/"+maxCols+"c.png";
+		}
+		*/
+		// get upgraded bubble row numbers
+		var row_numbers = bubbleRows(currently_previewing.length);
+		// save to figure out offset rows
+		var max_cols = row_numbers[0];
+		// position the bubble
+		var left_corner = (type*99)+96
+		var top_corner = (gen*99)+99
+		if(gen == 0) {
+			left_corner = zerogen_coords[Math.min(35, type)][0] + 100
+			top_corner = zerogen_coords[Math.min(35, type)][1] + 100
+		}
+		var rightp = left_corner + Math.max(100, 100*max_cols);
+		var botp = top_corner + Math.max(99, 99*row_numbers.length);
+		if(rightp > 2276)
+			left_corner -= (rightp-2276)
+		if(botp > 1571)
+			top_corner -= (99*(row_numbers.length+1))
+		// current index of currently_previewing
+		var pr_ind = 0;
+		for(var r=0; r<row_numbers.length; r++) {
+			var pokemon_in_row = row_numbers[r];
+			var hole_offset = (max_cols - pokemon_in_row)*49.5;
+			for(var c=0; c<pokemon_in_row; c++) {
+				var mon_key = currently_previewing[pr_ind];
+				// if this mon is already in the box, put the remove option instead
+				if(choices[currently_selecting[0]][currently_selecting[1]] == mon_key)
+					mon_key = "BLANK";
+				var mon_img = domlink + spriteFile + "/" + mon_key + ".png"
+				var ele = document.getElementById('preview'+pr_ind)
+				ele.src = mon_img;
+				ele.style.zIndex = 9;
+				//change the position
+				ele.style.top = top_corner + 99*r;
+				ele.style.left = left_corner + 99*c + hole_offset;
+				if(type_arr) {
+					// manipulate the 1st/2nd/3rd auras
+					var tind = type_arr.indexOf(currently_previewing[pr_ind]);
+					if(tind >= 0) {
+						var aura = document.getElementById("aura"+tind);
+						aura.src = domlink + "aura/" + tind + ".png";
+						console.log(domlink + "aura/" + tind + ".png");
+						console.log(aura.src);
+						aura.style.top = top_corner + 99*r;
+						aura.style.left = left_corner + 99*c + hole_offset;
+						aura.style.zIndex = 8;
+					}
+				}
+				pr_ind++;
+			}
+		}
+		/*
+		for(var i=0; i<currently_previewing.length; i++) {
+			var mon_key = currently_previewing[i];
+			// if this mon is already in the box, put the remove option instead
+			if(choices[currently_selecting[0]][currently_selecting[1]] == mon_key)
+				mon_key = "BLANK";
+			var mon_img = domlink + spriteFile + "/" + mon_key + ".png"
+			var ele = document.getElementById('preview'+i)
+			ele.src = mon_img;
+			ele.style.zIndex = 9;
+			//change the position
+			var row = Math.floor(i/maxCols);
+			var col = i%maxCols;
+			var offset = 0;
+			if(row+1 == maxRows)
+				offset = underflow*99/2;
+			ele.style.top = top_corner + (row*99);
+			ele.style.left = left_corner + (col*99) + offset;
+		}*/
+		var bubble = document.getElementById('bubble')
+		//bubble.src = bubble_img;
+		bubble.style.left = left_corner;
+		bubble.style.top = top_corner;
+		bubble.style.zIndex = 8;
+		bubble.style.width = Math.max(99, max_cols * 99) + 1;
+		bubble.style.height = Math.max(99, row_numbers.length * 99) + 1;
+	}
+	function closeBox() {
+		for(var i=0; i<currently_previewing.length; i++) {
+			var ele = document.getElementById('preview'+i);
+			ele.src = "./blank.png";
+			ele.style.zIndex = 0;
+		}
+		document.getElementById('bubble').style.zIndex = 0;
+		document.getElementById('aura0').style.zIndex = 0;
+		document.getElementById('aura1').style.zIndex = 0;
+		document.getElementById('aura2').style.zIndex = 0;
+		if(teamSelect) {
+			document.getElementById('box'+currently_selecting[0]+"_"+currently_selecting[1]).src = "./blank.png";
+			teamSelect = false;
+		}
+		currently_previewing = [];
+		currently_selecting = null;
+		toppings = false;
+	}
+	
+	function pickMon(num) {
+		if(currently_selecting === null)
+			return;
+		if(currently_previewing.length < num)
+			return;
+		var alchold = 0;
+		if(currently_selecting[1] > 24 && currently_selecting[1] < 34) {
+			alchold = currently_selecting[1];
+			currently_selecting[1] = 24;
+		}
+		var targetBox = document.getElementById('box'+currently_selecting[0]+"_"+currently_selecting[1]);
+		if(!toppings && choices[currently_selecting[0]][currently_selecting[1]] == currently_previewing[num]) {
+			choices[currently_selecting[0]][currently_selecting[1]] = "";
+			targetBox.src = "./blank.png";
+		}else{
+			choices[currently_selecting[0]][currently_selecting[1]] = currently_previewing[num];
+			targetBox.src = domlink + spriteFile + "/" + currently_previewing[num] + ".png"
+		}
+		if(currently_selecting[0] == 0 && currently_selecting[1] == 24) {
+			// alcremie
+			if(!toppings && currently_previewing[num] != "ALCREMIE_70") {
+				//open toppings
+				var gen = currently_selecting[0]
+				closeBox();
+				toppings = true;
+				openBox(gen, 25+num);
+			}else{
+				//apply toppings
+				closeBox();
+			}
+		}else{
+			writeCookie(currently_selecting[0]);
+			closeBox();
+		}
+	}
+	
+	function printTextbox() {
+		var output = "# Don't like my choices? You can overrule them here!\n# Write Code will put a text version of the grid here,\n# Then you can edit the names and Import Code to replace the images.\n# Most Pokemon are just their named capitalized, like SWELLOW.\n# Alternate forms have specific tags, like MEOWTH_2 for Galarian Meowth.\n# You can also use this to keep backups\n";
+		for(var g=0; g<choices.length; g++) {
+			for(var t=0; t<choices[g].length; t++) {
+				var ele = document.getElementById('box'+g+"_"+t);
+				if(ele == null) {
+					output += ",";
+					continue;
+				}
+				if(ele.src.match(/Shiny/))
+					output += "&"
+				if(choices[g][t])
+					output += choices[g][t]
+				output += ",";
+			}
+			output += "\n";
+		}
+		output += "spindaspots,";
+		for(var s in spot_map) {
+			var ax_ele = document.getElementById(s);
+			output += ax_ele.value + ",";
+		}
+		document.getElementById('import').value = output;
+	}
+	function loadTextbox(importbox) {
+		var save_cookie = false;
+		if(!importbox) {
+			importbox = document.getElementById('import').value;
+			save_cookie = true;
+		}
+		var lines = importbox.replace(/# ?[^\n]+\n/g, "").split("\n");
+		var gen = -1;
+		for(var l in lines) {
+			if(lines[l] == "" || !lines[l].match(/,/))
+				continue;
+			gen++;
+			if(save_cookie) {
+				setCookie(getCookieName(gen), lines[l]);
+			}
+			var ents = lines[l].split(",");
+			var spinda_spots = false;
+			if(ents[0] && ents[0] == "spindaspots") {
+				randomSpinda(ents);
+				continue;
+			}
+			for(var e in ents) {
+				var name = ents[e].replace("&", "");
+				if(gen == 0 && e == 22)
+					name = "SPINDA";
+				ele = document.getElementById('box'+gen+'_'+e);
+				if(!ele)
+					continue;
+				if(!choices[l] || name == "") {
+					ele.src = "./blank.png";
+					continue;
+				}
+				choices[l][e] = name
+				var sf = spriteFile;
+				if(ents[e].match("&"))
+					sf = "Shiny";
+				ele.src = domlink + sf + "/" + name + ".png";
+			}
+		}
+		
+	}
+	function resetGrid() {
+		if(confirm(getTranslString("gridConfirm"))) {
+			for(var c in cookie_names) {
+				deleteCookie(cookie_names[c]);
+			}
+			loadCookies();
+		}
+		resetChoices();
+	}
+
+	function drawFinal() {
+		var canvas = document.getElementById("final");
+		var ctx = canvas.getContext("2d");
+		ctx.drawImage(document.getElementById('back'), 0, 0);
+		// draw the pokemon
+		for(var g=0; g<11; g++) {
+			for(var t=1; t<36; t++) {
+				var ele = document.getElementById('box'+g+'_'+t);
+				if(!ele || ele.src == "./blank.png")
+					continue;
+				ctx.drawImage(ele, ele.offsetLeft, ele.offsetTop, 96, 96);
+				if(g == 0 && t == 22) {
+					// render spinda
+					var spots = ["spot1", "spot2", "spot3", "spot4", "spinda2", "spinda-cover"];
+					for(var s in spots) {
+						ele = document.getElementById(spots[s]);
+						ctx.drawImage(ele, ele.offsetLeft, ele.offsetTop);
+					}
+				}
+			}
+		}
+		// draw the category names
+		var label_w = 200;
+		var label_h = 100;
+		var break_at = 190;
+		var font_name = "Copenhagen Grotesk";
+		ctx.textAlign = "center";
+		ctx.fillStyle = "#ffffff";
+		for(var cat in fav_cats) {
+			var ele = document.getElementById(fav_cats[cat]);
+			if(!ele)
+				continue;
+			var par = ele.offsetParent;
+			var full_text = ele.innerHTML;
+			var test_pieces = full_text.split(/<br\/?>/);
+			var font_px = (ele.style.fontSize || "27px")
+			var font_size = parseInt(font_px.replace(/px/, ""));
+			var canvas_font = font_px + " " + font_name
+			ctx.font = canvas_font;
+			var pieces = [];
+			// check text wrapping
+			for(var t in test_pieces) {
+				var words = test_pieces[t].split(" ");
+				if(words.length == 1) {
+					// just one word, its gotta go regardless
+					pieces.push(test_pieces[t]);
+					continue;
+				}
+				var plen = ctx.measureText(test_pieces[t]).width;
+				//console.log(plen);
+				if(plen > break_at) {
+					var curr = words[0];
+					for(var i=1; i<words.length; i++) {
+						var testplen = ctx.measureText(curr + " " + words[i]).width;
+						if(testplen > break_at) {
+							// add the current, then make words[i] the current
+							pieces.push(curr);
+							curr = words[i];
+						}else{
+							// add words[i] to current
+							curr += " " + words[i];
+						}
+					}
+					// then add the remainder
+					pieces.push(curr);
+				}else{
+					pieces.push(test_pieces[t]);
+				}
+				//console.log(pieces);
+			}
+			// add text pieces from the bottom up
+			for(var p=0; p<pieces.length; p++) {
+				var fragment = pieces[pieces.length-1-p];
+				var label_t = 30 + par.offsetTop + (font_size+5)*(1-p);
+				var label_l = 100 + par.offsetLeft;
+				ctx.fillText(fragment, label_l, label_t);
+			}
+		}
+		// draw the type names
+		for(var typ in type_eles) {
+			var ele = document.getElementById(type_eles[typ]);
+			if(!ele)
+				continue;
+			var par = ele.offsetParent;
+			var full_text = ele.innerHTML;
+			var pieces = full_text.split(/<br\/?>/);
+			var font_px = (ele.style.fontSize || "25px")
+			var font_size = parseInt(font_px.replace(/px/, ""));
+			var canvas_font = font_px + " " + font_name
+			ctx.font = canvas_font;
+			var start_at = 61;
+			if(pieces.length > 1)
+				start_at -= 15;
+			if(font_size < 25)
+				start_at -= Math.round((25-font_size)/2)
+			for(var p=0; p<pieces.length; p++) {
+				var fragment = pieces[p];
+				var label_t = start_at;
+				var label_l = 148 + par.offsetLeft;
+				// draw drop shadow offset 2 px;
+				ctx.fillStyle = "#000000";
+				ctx.fillText(fragment, label_l+2, label_t+2);
+				// draw real text
+				ctx.fillStyle = "#ffffff";
+				ctx.fillText(fragment, label_l, label_t);
+				start_at += 9 + font_size;
+			}
+		}
+		// draw Team
+		var te = document.getElementById("Team");
+		var font_px = (te.style.fontSize || "27px")
+		var font_size = parseInt(font_px.replace(/px/, ""));
+		var canvas_font = font_px + " " + font_name
+		ctx.font = canvas_font;
+		if(te) {
+			te = te.innerHTML;
+		}else{
+			te = "Team";
+		}
+		ctx.fillText(te, 240, 1245)
+		canvas.style.zIndex = -1;
+		var dbutton = document.getElementById("downloader")
+		dbutton.href = canvas.toDataURL("image/png");
+		dbutton.innerHTML = getTranslString("downloader");
+		dbutton.click()
+	}
+	function spindaSpot(ele, axis) {
+		var spot_ele = document.getElementById(spot_map[ele.id])
+		if(axis == "x") {
+			var base_left = 1604;
+			spot_ele.style.left = base_left + parseInt(ele.value);
+		}else{
+			var base_top = 1417;
+			spot_ele.style.top = base_top - parseInt(ele.value);
+		}
+		writeSpindaCookie();
+	}
+
+	function rand(scale) {
+		return Math.floor(Math.random()*scale)
+	}
+	function randomSpinda(ar) {
+		var spots = ["spot1", "spot2", "spot3", "spot4"];
+		if(!ar) {
+			ar = ["spindaspots"];
+			for(var s in spots) {
+				ar.push(rand(17));
+				ar.push(rand(17));
+			}
+		}
+		var base_left = 1604;
+		var base_top = 1417;
+		for(var i=0; i<spots.length; i++) {
+			var sname = spots[i];
+			var spot_ele = document.getElementById(sname);
+			var new_x = ar[2*i+1];
+			var new_y = ar[2*i+2];
+			spot_ele.style.left = base_left + parseInt(new_x);
+			spot_ele.style.top = base_top - parseInt(new_y);
+			document.getElementById(sname + "x").value = new_x;
+			document.getElementById(sname + "y").value = new_y;
+		}
+		if(!choices[0][22] == "SPINDA") {
+			choices[0][22] = "SPINDA";
+			writeCookie(0)
+		}
+		writeSpindaCookie()
+	}
+
+	function calcTypes() {
+		var scores = {};
+		for(var t in type_count_array)
+			scores[type_count_array[t]] = 0;
+		for(var g in choices) {
+			for(var m in choices[g]) {
+				var mon_name = choices[g][m];
+				if(!mon_name || mon_name == "")
+					continue;
+				var mon_types = rev_map[mon_name];
+				if(!mon_types)
+					continue;
+				for(let ty in mon_types)
+					scores[mon_types[ty]]++;
+			}
+		}
+		// don't count spinda
+		scores["Normal"]--;
+		type_count_array.sort(function(a, b) {
+			return scores[b] - scores[a];
+		})
+		var fin = [];
+		for(var i=0; i<3; i++) {
+			if(scores[type_count_array[i]] > 0)
+				fin.push(type_count_array[i])
+		}
+		return fin;
+	}
+
+	// returns the cookie with the given name,
+	// or undefined if not found
+	function getCookie(name) {
+	  var matches = document.cookie.match(new RegExp(
+		"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+	  ));
+	  return matches ? decodeURIComponent(matches[1]) : undefined;
+	}
+	function setCookie(name, value) {
+
+	  options = {
+		path: '/',
+	    samesite: 'strict'
+	  };
+	  options.Expires = new Date(new Date().getTime() + 365*24*60*60*1000);
+
+	  if (options.Expires instanceof Date) {
+		options.Expires = options.Expires.toUTCString();
+	  }
+
+	  var updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+	  for (var optionKey in options) {
+		updatedCookie += "; " + optionKey;
+		var optionValue = options[optionKey];
+		if (optionValue !== true) {
+		  updatedCookie += "=" + optionValue;
+		}
+	  }
+
+	  document.cookie = updatedCookie;
+	}
+	
+	function deleteCookie(name) {
+	  setCookie(name, "", {
+		'max-age': -1
+	  })
+	}
+	
+	// cookie-fy a gen and save it
+	function writeCookie(g) {
+		var cookie_text = "";
+		for(var t=0; t<choices[g].length; t++) {
+			var ele = document.getElementById('box'+g+"_"+t);
+			if(ele == null) {
+				cookie_text += ",";
+				continue;
+			}
+			if(ele.src.match(/Shiny/))
+				cookie_text += "&"
+			if(choices[g][t])
+				cookie_text += choices[g][t]
+			cookie_text += ",";
+		}
+		setCookie(getCookieName(g), cookie_text);
+	}
+	function writeSpindaCookie() {
+		var spots = ["spot1", "spot2", "spot3", "spot4"];
+		var cookie_text = "spindaspots,";
+		for(var i=0; i<spots.length; i++) {
+			var sname = spots[i];
+			var spot_ele = document.getElementById(sname);
+			cookie_text += document.getElementById(sname + "x").value;
+			cookie_text += ",";
+			cookie_text += document.getElementById(sname + "y").value;
+			cookie_text += ",";
+		}
+		setCookie("spinda", cookie_text);
+	}
+	function loadCookies() {
+		var lang_code = window.location.href.match(/\?lang=([^&]+)/);
+		if(lang_code) {
+			changeLang(lang_code[1]);
+		}
+		var cookie_vals = [];
+		for(var c in cookie_names)
+			cookie_vals.push(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+		var cookies = document.cookie.split(/; ?/);
+		for(var c in cookies) {
+			var pair = cookies[c].match(/([^=]+) ?= ?([^=;]+)/);
+			if(!pair)
+				continue;
+			var cname = decodeURIComponent(pair[1]);
+			var cval = decodeURIComponent(pair[2]);
+			var g = cookie_names.indexOf(cname);
+			if(g == -1) {
+				//special cookies
+				if(cname == "shiny")
+					spriteFile = swap[spriteFile];
+			}else{
+				cookie_vals[g] = cval;
+			}
+		}
+		loadTextbox(cookie_vals.join("\n"));
+		
+	}
+	function getCookieName(g) {
+		if(parseInt(g) < 10)
+			return "gen"+g;
+		if(g == 10)
+			return "favs";
+		return "spinda";
+	}
+</script>
 </head>
-<body>
-    
+<body onLoad="loadCookies();">
+<div id="language-select">Language: 
+<a href="javascript:changeLang('English')" id="lang_en" style>English</a>
+• <a href="javascript:changeLang('Português')" id="lang_pt">Português</a>
+• <a href="javascript:changeLang('Français')" id="lang_fr">Français</a>
+• <a href="javascript:changeLang('Español')" id="lang_es">Español</a>
+• <a href="javascript:changeLang('Español_Latino')" id="lang_el">Español (Latino)</a>
+• <a href="javascript:changeLang('Deutsch')" id="lang_de">Deutsch</a>
+• <a href="javascript:changeLang('Italiano')" id="lang_it">Italiano</a>
+• <a href="javascript:changeLang('Nederlands')" id="lang_ne">Nederlands</a>
+• <a href="javascript:changeLang('日本')" id="lang_ja">日本</a>
+• <a href="javascript:changeLang('한국어')" id="lang_ko">한국어</a>
+• <a href="https://cajunavenger.github.io/?lang=en" id="new_url">https://cajunavenger.github.io/?lang=en</a>
+<!--
+• <a href="javascript:changeLang('简中')">简中</a>
+• <a href="javascript:changeLang('繁中')">繁中</a>-->
+</div>
+<div id="grid-wrapper">
+<!--<img class="back" id="back" src="https://cajunavenger.github.io/background.png" alt="" height="1571" width="2276" onclick="closeBox();"/>-->
+<img class="back" id="back" src="https://cajunavenger.github.io/background3.png" alt="" height="1571" width="2276" onclick="closeBox();"/>
+<canvas id="final" height="1571" width="2276"></canvas>
+<img class="selectionBox team-top team-left" id="box0_1" onclick="openBox(0, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox team-top team-mid" id="box0_2" onclick="openBox(0, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox team-top team-right" id="box0_3" onclick="openBox(0, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox team-bottom team-left" id="box0_4" onclick="openBox(0, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox team-bottom team-mid" id="box0_5" onclick="openBox(0, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox team-bottom team-right" id="box0_6" onclick="openBox(0, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-1" id="box0_7" onclick="openBox(0, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-2" id="box0_8" onclick="openBox(0, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-3" id="box0_9" onclick="openBox(0, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-4" id="box0_10" onclick="openBox(0, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-5" id="box0_11" onclick="openBox(0, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-6" id="box0_12" onclick="openBox(0, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-7" id="box0_13" onclick="openBox(0, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-8" id="box0_14" onclick="openBox(0, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-9" id="box0_15" onclick="openBox(0, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row1-box bottom-box-10" id="box0_34" onclick="openBox(0, 34);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-1" id="box0_16" onclick="openBox(0, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-2" id="box0_17" onclick="openBox(0, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-3" id="box0_18" onclick="openBox(0, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-4" id="box0_19" onclick="openBox(0, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-5" id="box0_20" onclick="openBox(0, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-6" id="box0_21" onclick="openBox(0, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-7" id="box0_22" onclick="" src="https://cajunavenger.github.io/Front/SPINDA.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-8" id="box0_23" onclick="openBox(0, 23);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-9" id="box0_24" onclick="openBox(0, 24);" src="./blank.png" height="96" width="96">
+<img class="selectionBox bottom-row2-box bottom-box-10" id="box0_35" onclick="openBox(0, 35);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-1-box" id="box1_1" onclick="openBox(1, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-2-box" id="box1_2" onclick="openBox(1, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-3-box" id="box1_3" onclick="openBox(1, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-4-box" id="box1_4" onclick="openBox(1, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-5-box" id="box1_5" onclick="openBox(1, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-6-box" id="box1_6" onclick="openBox(1, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-7-box" id="box1_7" onclick="openBox(1, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-8-box" id="box1_8" onclick="openBox(1, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-9-box" id="box1_9" onclick="openBox(1, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-10-box" id="box1_10" onclick="openBox(1, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-11-box" id="box1_11" onclick="openBox(1, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-12-box" id="box1_12" onclick="openBox(1, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-13-box" id="box1_13" onclick="openBox(1, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-14-box" id="box1_14" onclick="openBox(1, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-15-box" id="box1_15" onclick="openBox(1, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-16-box" id="box1_16" onclick="openBox(1, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-17-box" id="box1_17" onclick="openBox(1, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-18-box" id="box1_18" onclick="openBox(1, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-19-box" id="box1_19" onclick="openBox(1, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-20-box" id="box1_20" onclick="openBox(1, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-21-box" id="box1_21" onclick="openBox(1, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-1-box type-22-box" id="box1_22" onclick="openBox(1, 22);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-1-box" id="box2_1" onclick="openBox(2, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-2-box" id="box2_2" onclick="openBox(2, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-3-box" id="box2_3" onclick="openBox(2, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-4-box" id="box2_4" onclick="openBox(2, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-5-box" id="box2_5" onclick="openBox(2, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-6-box" id="box2_6" onclick="openBox(2, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-7-box" id="box2_7" onclick="openBox(2, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-8-box" id="box2_8" onclick="openBox(2, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-9-box" id="box2_9" onclick="openBox(2, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-10-box" id="box2_10" onclick="openBox(2, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-11-box" id="box2_11" onclick="openBox(2, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-12-box" id="box2_12" onclick="openBox(2, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-13-box" id="box2_13" onclick="openBox(2, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-14-box" id="box2_14" onclick="openBox(2, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-15-box" id="box2_15" onclick="openBox(2, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-16-box" id="box2_16" onclick="openBox(2, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-17-box" id="box2_17" onclick="openBox(2, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-18-box" id="box2_18" onclick="openBox(2, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-19-box" id="box2_19" onclick="openBox(2, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-20-box" id="box2_20" onclick="openBox(2, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-21-box" id="box2_21" onclick="openBox(2, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-2-box type-22-box" id="box2_22" onclick="openBox(2, 22);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-1-box" id="box3_1" onclick="openBox(3, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-2-box" id="box3_2" onclick="openBox(3, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-3-box" id="box3_3" onclick="openBox(3, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-4-box" id="box3_4" onclick="openBox(3, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-5-box" id="box3_5" onclick="openBox(3, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-6-box" id="box3_6" onclick="openBox(3, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-7-box" id="box3_7" onclick="openBox(3, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-8-box" id="box3_8" onclick="openBox(3, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-9-box" id="box3_9" onclick="openBox(3, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-10-box" id="box3_10" onclick="openBox(3, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-11-box" id="box3_11" onclick="openBox(3, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-12-box" id="box3_12" onclick="openBox(3, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-13-box" id="box3_13" onclick="openBox(3, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-14-box" id="box3_14" onclick="openBox(3, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-15-box" id="box3_15" onclick="openBox(3, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-16-box" id="box3_16" onclick="openBox(3, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-17-box" id="box3_17" onclick="openBox(3, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-18-box" id="box3_18" onclick="openBox(3, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-19-box" id="box3_19" onclick="openBox(3, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-20-box" id="box3_20" onclick="openBox(3, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-21-box" id="box3_21" onclick="openBox(3, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-3-box type-22-box" id="box3_22" onclick="openBox(3, 22);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-1-box" id="box4_1" onclick="openBox(4, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-2-box" id="box4_2" onclick="openBox(4, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-3-box" id="box4_3" onclick="openBox(4, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-4-box" id="box4_4" onclick="openBox(4, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-5-box" id="box4_5" onclick="openBox(4, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-6-box" id="box4_6" onclick="openBox(4, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-7-box" id="box4_7" onclick="openBox(4, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-8-box" id="box4_8" onclick="openBox(4, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-9-box" id="box4_9" onclick="openBox(4, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-10-box" id="box4_10" onclick="openBox(4, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-11-box" id="box4_11" onclick="openBox(4, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-12-box" id="box4_12" onclick="openBox(4, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-13-box" id="box4_13" onclick="openBox(4, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-14-box" id="box4_14" onclick="openBox(4, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-15-box" id="box4_15" onclick="openBox(4, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-16-box" id="box4_16" onclick="openBox(4, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-17-box" id="box4_17" onclick="openBox(4, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-18-box" id="box4_18" onclick="openBox(4, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-19-box" id="box4_19" onclick="openBox(4, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-20-box" id="box4_20" onclick="openBox(4, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-21-box" id="box4_21" onclick="openBox(4, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-4-box type-22-box" id="box4_22" onclick="openBox(4, 22);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-1-box" id="box5_1" onclick="openBox(5, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-2-box" id="box5_2" onclick="openBox(5, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-3-box" id="box5_3" onclick="openBox(5, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-4-box" id="box5_4" onclick="openBox(5, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-5-box" id="box5_5" onclick="openBox(5, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-6-box" id="box5_6" onclick="openBox(5, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-7-box" id="box5_7" onclick="openBox(5, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-8-box" id="box5_8" onclick="openBox(5, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-9-box" id="box5_9" onclick="openBox(5, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-10-box" id="box5_10" onclick="openBox(5, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-11-box" id="box5_11" onclick="openBox(5, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-12-box" id="box5_12" onclick="openBox(5, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-13-box" id="box5_13" onclick="openBox(5, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-14-box" id="box5_14" onclick="openBox(5, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-15-box" id="box5_15" onclick="openBox(5, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-16-box" id="box5_16" onclick="openBox(5, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-17-box" id="box5_17" onclick="openBox(5, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-18-box" id="box5_18" onclick="openBox(5, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-19-box" id="box5_19" onclick="openBox(5, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-20-box" id="box5_20" onclick="openBox(5, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-21-box" id="box5_21" onclick="openBox(5, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-5-box type-22-box" id="box5_22" onclick="openBox(5, 22);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-1-box" id="box6_1" onclick="openBox(6, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-2-box" id="box6_2" onclick="openBox(6, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-3-box" id="box6_3" onclick="openBox(6, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-4-box" id="box6_4" onclick="openBox(6, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-5-box" id="box6_5" onclick="openBox(6, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-6-box" id="box6_6" onclick="openBox(6, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-7-box" id="box6_7" onclick="openBox(6, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-8-box" id="box6_8" onclick="openBox(6, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-9-box" id="box6_9" onclick="openBox(6, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-10-box" id="box6_10" onclick="openBox(6, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-11-box" id="box6_11" onclick="openBox(6, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-12-box" id="box6_12" onclick="openBox(6, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-13-box" id="box6_13" onclick="openBox(6, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-14-box" id="box6_14" onclick="openBox(6, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-15-box" id="box6_15" onclick="openBox(6, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-16-box" id="box6_16" onclick="openBox(6, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-17-box" id="box6_17" onclick="openBox(6, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-18-box" id="box6_18" onclick="openBox(6, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-19-box" id="box6_19" onclick="openBox(6, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-20-box" id="box6_20" onclick="openBox(6, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-21-box" id="box6_21" onclick="openBox(6, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-6-box type-22-box" id="box6_22" onclick="openBox(6, 22);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-1-box" id="box7_1" onclick="openBox(7, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-2-box" id="box7_2" onclick="openBox(7, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-3-box" id="box7_3" onclick="openBox(7, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-4-box" id="box7_4" onclick="openBox(7, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-5-box" id="box7_5" onclick="openBox(7, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-6-box" id="box7_6" onclick="openBox(7, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-7-box" id="box7_7" onclick="openBox(7, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-8-box" id="box7_8" onclick="openBox(7, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-9-box" id="box7_9" onclick="openBox(7, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-10-box" id="box7_10" onclick="openBox(7, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-11-box" id="box7_11" onclick="openBox(7, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-12-box" id="box7_12" onclick="openBox(7, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-13-box" id="box7_13" onclick="openBox(7, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-14-box" id="box7_14" onclick="openBox(7, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-15-box" id="box7_15" onclick="openBox(7, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-16-box" id="box7_16" onclick="openBox(7, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-17-box" id="box7_17" onclick="openBox(7, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-18-box" id="box7_18" onclick="openBox(7, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-19-box" id="box7_19" onclick="openBox(7, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-20-box" id="box7_20" onclick="openBox(7, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-21-box" id="box7_21" onclick="openBox(7, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-7-box type-22-box" id="box7_22" onclick="openBox(7, 22);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-1-box" id="box8_1" onclick="openBox(8, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-2-box" id="box8_2" onclick="openBox(8, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-3-box" id="box8_3" onclick="openBox(8, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-4-box" id="box8_4" onclick="openBox(8, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-5-box" id="box8_5" onclick="openBox(8, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-6-box" id="box8_6" onclick="openBox(8, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-7-box" id="box8_7" onclick="openBox(8, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-8-box" id="box8_8" onclick="openBox(8, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-9-box" id="box8_9" onclick="openBox(8, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-10-box" id="box8_10" onclick="openBox(8, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-11-box" id="box8_11" onclick="openBox(8, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-12-box" id="box8_12" onclick="openBox(8, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-13-box" id="box8_13" onclick="openBox(8, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-14-box" id="box8_14" onclick="openBox(8, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-15-box" id="box8_15" onclick="openBox(8, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-16-box" id="box8_16" onclick="openBox(8, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-17-box" id="box8_17" onclick="openBox(8, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-18-box" id="box8_18" onclick="openBox(8, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-19-box" id="box8_19" onclick="openBox(8, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-20-box" id="box8_20" onclick="openBox(8, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-21-box" id="box8_21" onclick="openBox(8, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-8-box type-22-box" id="box8_22" onclick="openBox(8, 22);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-1-box" id="box9_1" onclick="openBox(9, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-2-box" id="box9_2" onclick="openBox(9, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-3-box" id="box9_3" onclick="openBox(9, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-4-box" id="box9_4" onclick="openBox(9, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-5-box" id="box9_5" onclick="openBox(9, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-6-box" id="box9_6" onclick="openBox(9, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-7-box" id="box9_7" onclick="openBox(9, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-8-box" id="box9_8" onclick="openBox(9, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-9-box" id="box9_9" onclick="openBox(9, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-10-box" id="box9_10" onclick="openBox(9, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-11-box" id="box9_11" onclick="openBox(9, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-12-box" id="box9_12" onclick="openBox(9, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-13-box" id="box9_13" onclick="openBox(9, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-14-box" id="box9_14" onclick="openBox(9, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-15-box" id="box9_15" onclick="openBox(9, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-16-box" id="box9_16" onclick="openBox(9, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-17-box" id="box9_17" onclick="openBox(9, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-18-box" id="box9_18" onclick="openBox(9, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-19-box" id="box9_19" onclick="openBox(9, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-20-box" id="box9_20" onclick="openBox(9, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-21-box" id="box9_21" onclick="openBox(9, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox gen-9-box type-22-box" id="box9_22" onclick="openBox(9, 22);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-1-box" id="box10_1" onclick="openBox(10, 1);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-2-box" id="box10_2" onclick="openBox(10, 2);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-3-box" id="box10_3" onclick="openBox(10, 3);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-4-box" id="box10_4" onclick="openBox(10, 4);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-5-box" id="box10_5" onclick="openBox(10, 5);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-6-box" id="box10_6" onclick="openBox(10, 6);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-7-box" id="box10_7" onclick="openBox(10, 7);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-8-box" id="box10_8" onclick="openBox(10, 8);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-9-box" id="box10_9" onclick="openBox(10, 9);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-10-box" id="box10_10" onclick="openBox(10, 10);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-11-box" id="box10_11" onclick="openBox(10, 11);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-12-box" id="box10_12" onclick="openBox(10, 12);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-13-box" id="box10_13" onclick="openBox(10, 13);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-14-box" id="box10_14" onclick="openBox(10, 14);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-15-box" id="box10_15" onclick="openBox(10, 15);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-16-box" id="box10_16" onclick="openBox(10, 16);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-17-box" id="box10_17" onclick="openBox(10, 17);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-18-box" id="box10_18" onclick="openBox(10, 18);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-19-box" id="box10_19" onclick="openBox(10, 19);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-20-box" id="box10_20" onclick="openBox(10, 20);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-21-box" id="box10_21" onclick="openBox(10, 21);" src="./blank.png" height="96" width="96">
+<img class="selectionBox fav-type-box type-22-box" id="box10_22" onclick="openBox(10, 22);" src="./blank.png" height="96" width="96"><img class="charm" id="charm" src="./charm.png" alt="" height="64" width="64" onclick="activateShiny();" />
+
+<img class="preview" id="preview0" src="./blank.png" height="96" width="96" onclick="pickMon(0);">
+<img class="preview" id="preview1" src="./blank.png" height="96" width="96" onclick="pickMon(1);">
+<img class="preview" id="preview2" src="./blank.png" height="96" width="96" onclick="pickMon(2);">
+<img class="preview" id="preview3" src="./blank.png" height="96" width="96" onclick="pickMon(3);">
+<img class="preview" id="preview4" src="./blank.png" height="96" width="96" onclick="pickMon(4);">
+<img class="preview" id="preview5" src="./blank.png" height="96" width="96" onclick="pickMon(5);">
+<img class="preview" id="preview6" src="./blank.png" height="96" width="96" onclick="pickMon(6);">
+<img class="preview" id="preview7" src="./blank.png" height="96" width="96" onclick="pickMon(7);">
+<img class="preview" id="preview8" src="./blank.png" height="96" width="96" onclick="pickMon(8);">
+<img class="preview" id="preview9" src="./blank.png" height="96" width="96" onclick="pickMon(9);">
+<img class="preview" id="preview10" src="./blank.png" height="96" width="96" onclick="pickMon(10);">
+<img class="preview" id="preview11" src="./blank.png" height="96" width="96" onclick="pickMon(11);">
+<img class="preview" id="preview12" src="./blank.png" height="96" width="96" onclick="pickMon(12);">
+<img class="preview" id="preview13" src="./blank.png" height="96" width="96" onclick="pickMon(13);">
+<img class="preview" id="preview14" src="./blank.png" height="96" width="96" onclick="pickMon(14);">
+<img class="preview" id="preview15" src="./blank.png" height="96" width="96" onclick="pickMon(15);">
+<img class="preview" id="preview16" src="./blank.png" height="96" width="96" onclick="pickMon(16);">
+<img class="preview" id="preview17" src="./blank.png" height="96" width="96" onclick="pickMon(17);">
+<img class="preview" id="preview18" src="./blank.png" height="96" width="96" onclick="pickMon(18);">
+<img class="preview" id="preview19" src="./blank.png" height="96" width="96" onclick="pickMon(19);">
+<img class="preview" id="preview20" src="./blank.png" height="96" width="96" onclick="pickMon(20);">
+<img class="preview" id="preview21" src="./blank.png" height="96" width="96" onclick="pickMon(21);">
+<img class="preview" id="preview22" src="./blank.png" height="96" width="96" onclick="pickMon(22);">
+<img class="preview" id="preview23" src="./blank.png" height="96" width="96" onclick="pickMon(23);">
+<img class="preview" id="preview24" src="./blank.png" height="96" width="96" onclick="pickMon(24);">
+<img class="preview" id="preview25" src="./blank.png" height="96" width="96" onclick="pickMon(25);">
+<img class="preview" id="preview26" src="./blank.png" height="96" width="96" onclick="pickMon(26);">
+<img class="preview" id="preview27" src="./blank.png" height="96" width="96" onclick="pickMon(27);">
+<img class="preview" id="preview28" src="./blank.png" height="96" width="96" onclick="pickMon(28);">
+<img class="preview" id="preview29" src="./blank.png" height="96" width="96" onclick="pickMon(29);">
+<img class="preview" id="preview30" src="./blank.png" height="96" width="96" onclick="pickMon(30);">
+<img class="preview" id="preview31" src="./blank.png" height="96" width="96" onclick="pickMon(31);">
+<img class="preview" id="preview32" src="./blank.png" height="96" width="96" onclick="pickMon(32);">
+<img class="preview" id="preview33" src="./blank.png" height="96" width="96" onclick="pickMon(33);">
+<img class="preview" id="preview34" src="./blank.png" height="96" width="96" onclick="pickMon(34);">
+<img class="preview" id="preview35" src="./blank.png" height="96" width="96" onclick="pickMon(35);">
+<img class="preview" id="preview36" src="./blank.png" height="96" width="96" onclick="pickMon(36);">
+<img class="preview" id="preview37" src="./blank.png" height="96" width="96" onclick="pickMon(37);">
+<img class="preview" id="preview38" src="./blank.png" height="96" width="96" onclick="pickMon(38);">
+<img class="preview" id="preview39" src="./blank.png" height="96" width="96" onclick="pickMon(39);">
+<img class="preview" id="preview40" src="./blank.png" height="96" width="96" onclick="pickMon(40);">
+<img class="preview" id="preview41" src="./blank.png" height="96" width="96" onclick="pickMon(41);">
+<img class="preview" id="preview42" src="./blank.png" height="96" width="96" onclick="pickMon(42);">
+<img class="preview" id="preview43" src="./blank.png" height="96" width="96" onclick="pickMon(43);">
+<img class="preview" id="preview44" src="./blank.png" height="96" width="96" onclick="pickMon(44);">
+<img class="preview" id="preview45" src="./blank.png" height="96" width="96" onclick="pickMon(45);">
+<img class="preview" id="preview46" src="./blank.png" height="96" width="96" onclick="pickMon(46);">
+<img class="preview" id="preview47" src="./blank.png" height="96" width="96" onclick="pickMon(47);">
+<img class="preview" id="preview48" src="./blank.png" height="96" width="96" onclick="pickMon(48);">
+<img class="preview" id="preview49" src="./blank.png" height="96" width="96" onclick="pickMon(49);">
+<img class="preview" id="preview50" src="./blank.png" height="96" width="96" onclick="pickMon(50);">
+<img class="preview" id="preview51" src="./blank.png" height="96" width="96" onclick="pickMon(51);">
+<img class="preview" id="preview52" src="./blank.png" height="96" width="96" onclick="pickMon(52);">
+<img class="preview" id="preview53" src="./blank.png" height="96" width="96" onclick="pickMon(53);">
+<img class="preview" id="preview54" src="./blank.png" height="96" width="96" onclick="pickMon(54);">
+<img class="preview" id="preview55" src="./blank.png" height="96" width="96" onclick="pickMon(55);">
+<img class="preview" id="preview56" src="./blank.png" height="96" width="96" onclick="pickMon(56);">
+<img class="preview" id="preview57" src="./blank.png" height="96" width="96" onclick="pickMon(57);">
+<img class="preview" id="preview58" src="./blank.png" height="96" width="96" onclick="pickMon(58);">
+<img class="preview" id="preview59" src="./blank.png" height="96" width="96" onclick="pickMon(59);">
+<img id="spinda" src="https://cajunavenger.github.io/Front/SPINDA.png">
+<img id="spinda2" src="https://cajunavenger.github.io/spinda/Front/SPINDA.png">
+<img id="spinda-cover" src="https://cajunavenger.github.io/spinda/cover.png" onclick="shinySpinda();">
+<img id="spot1" class="spinda-spot" src="https://cajunavenger.github.io/spinda/Front/spot1.png">
+<img id="spot2" class="spinda-spot" src="https://cajunavenger.github.io/spinda/Front/spot2.png">
+<img id="spot3" class="spinda-spot" src="https://cajunavenger.github.io/spinda/Front/spot3.png">
+<img id="spot4" class="spinda-spot" src="https://cajunavenger.github.io/spinda/Front/spot4.png">
+<input type="number" id="spot1x" class="spotinput" min="0" max="16" value="8" oninput="spindaSpot(this, 'x')">
+<input type="number" id="spot1y" class="spotinput" min="0" max="16" value="8" oninput="spindaSpot(this, 'y')">
+<input type="number" id="spot3x" class="spotinput" min="0" max="16" value="8" oninput="spindaSpot(this, 'x')">
+<input type="number" id="spot3y" class="spotinput" min="0" max="16" value="8" oninput="spindaSpot(this, 'y')">
+<input type="number" id="spot2x" class="spotinput" min="0" max="16" value="8" oninput="spindaSpot(this, 'x')">
+<input type="number" id="spot2y" class="spotinput" min="0" max="16" value="8" oninput="spindaSpot(this, 'y')">
+<input type="number" id="spot4x" class="spotinput" min="0" max="16" value="8" oninput="spindaSpot(this, 'x')">
+<input type="number" id="spot4y" class="spotinput" min="0" max="16" value="8" oninput="spindaSpot(this, 'y')">
+<span id="spinda-help">
+	Spinda's spots can be randomized or manually placed.<br>
+	Each box pair in the corners moves its nearest spot.<br>
+	Up/Down on the first box moves it Right/Left.<br>
+	Up/Down on the second box moves it Up/Down.
+</span>
+<input type="button" id="btnRandom" value="Randomize!" onclick="randomSpinda()"/>
+<span id="button-wrapper">
+<a id="downloader" download="download"></a>
+<br><input type="button" id="btnPrint" value="Download Image" onclick="drawFinal()" target="_blank"/>
+<input type="button" id="btnExport" value="Export Choices" onclick="printTextbox()"/>
+<input type="button" id="btnLoad" value="Import Choices" onclick="loadTextbox()"/>
+<input type="button" id="btnReset" value="Reset The Grid!" onclick="resetGrid()"/>
+</span>
+<textarea id="import" rows="13" cols="72" spellcheck="false">
+# Don't like my choices? You can overrule them here!
+# Write Code will put a text version of the grid here
+# Then you can edit the names and Import Code to replace the images.
+# Most Pokemon are just their named capitalized, like SWELLOW.
+# Alternate forms have specific tags, like MEOWTH_2 for Galarian Meowth.
+# You can also use this to keep backups
+</textarea>
+<div class="bubble" id="bubble"></div>
+<img class="aura" id="aura0"></img>
+<img class="aura" id="aura1"></img>
+<img class="aura" id="aura2"></img>
+<div class="translate-wrapper bottom-row1-label bottom-box-1-label"><div class="grid-text" id="Bird">Favorite<br>Regional Bird</div></div>
+<div class="translate-wrapper bottom-row1-label bottom-box-2-label"><div class="grid-text" id="Mammal">Favorite<br>Regional Mammal</div></div>
+<div class="translate-wrapper bottom-row1-label bottom-box-3-label"><div class="grid-text" id="RegionBug">Favorite<br>Regional Bug</div></div>
+<div class="translate-wrapper bottom-row1-label bottom-box-4-label"><div class="grid-text" id="PseudoLegend">Favorite<br>Pseudo Legend</div></div>
+<div class="translate-wrapper bottom-row1-label bottom-box-5-label"><div class="grid-text" id="PikachuClone">Favorite<br>Pikachu Clone</div></div>
+<div class="translate-wrapper bottom-row1-label bottom-box-6-label"><div class="grid-text" id="Eeveelution">Favorite<br>Eeveelution</div></div>
+<div class="translate-wrapper bottom-row1-label bottom-box-7-label"><div class="grid-text" id="Fossil">Favorite<br>Fossil</div></div>
+<div class="translate-wrapper bottom-row1-label bottom-box-8-label"><div class="grid-text" id="RegionalForm">Favorite<br>Regional Form</div></div>
+<div class="translate-wrapper bottom-row1-label bottom-box-9-label"><div class="grid-text" id="Gigantamax">Favorite<br>Gigantamax</div></div>
+<div class="translate-wrapper bottom-row1-label bottom-box-10-label"><div class="grid-text" id="Baby">Favorite<br>Baby</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-1-label"><div class="grid-text" id="BoxLegendary">Favorite<br>Box Legendary</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-2-label"><div class="grid-text" id="Mythical">Favorite<br>Mythical</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-3-label"><div class="grid-text" id="UltraBeast">Favorite<br>Ultra Beast</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-4-label"><div class="grid-text" id="Paradox">Favorite<br>Paradox</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-5-label"><div class="grid-text" id="Type">Favorite<br>Type</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-6-label"><div class="grid-text" id="Pokeball">Favorite<br>Poké Ball</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-7-label"><div class="grid-text" id="SpindaTitle">Favorite<br>Spinda</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-8-label"><div class="grid-text" id="Vivillon">Favorite<br>Vivillon</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-9-label"><div class="grid-text" id="Alcremie">Favorite<br>Alcremie</div></div>
+<div class="translate-wrapper bottom-row2-label bottom-box-10-label"><div class="grid-text" id="NewEvolution">Favorite<br>New Evo</div></div>
+<div id="teamInstructions" class="translate-wrapper grid-text">Click a team box, then a Pokémon from the grid to copy it to the box.</div>
+<div id="Team" class="translate-wrapper grid-text" style="top:1215px;left:96px;width:296px;">Team</div>
+<div id="ShinyCharm1" class="translate-wrapper msg-text" style="top:1100px;left:95px;width:400px;">Click the Shiny Charm, then click Pokemon to make them shiny.</div>
+<div id="ShinyCharm2" class="translate-wrapper msg-text" style="height:fit-content;cursor:pointer;z-index:0;top:1163px;left:95px;width:400px;"  onclick="fullShiny();" >Or click here to make everything shiny.</div>
+<div id="type-wrapper">
+	<div class="translate-wrapper type-box"><div class="type-text" id="Normal">Normal</div></div>
+	<div class="translate-wrapper type-box" style="left:100px;"><div class="type-text" id="Fire">Fire</div></div>
+	<div class="translate-wrapper type-box" style="left:199px;"><div class="type-text" id="Water">Water</div></div>
+	<div class="translate-wrapper type-box" style="left:298px;"><div class="type-text" id="Grass">Grass</div></div>
+	<div class="translate-wrapper type-box" style="left:397px;"><div class="type-text" id="Electric">Electric</div></div>
+	<div class="translate-wrapper type-box" style="left:496px;"><div class="type-text" id="Ice">Ice</div></div>
+	<div class="translate-wrapper type-box" style="left:595px;"><div class="type-text" id="Fighting">Fighting</div></div>
+	<div class="translate-wrapper type-box" style="left:694px;"><div class="type-text" id="Poison">Poison</div></div>
+	<div class="translate-wrapper type-box" style="left:793px;"><div class="type-text" id="Ground">Ground</div></div>
+	<div class="translate-wrapper type-box" style="left:892px;"><div class="type-text" id="Flying">Flying</div></div>
+	<div class="translate-wrapper type-box" style="left:991px;"><div class="type-text" id="Psychic">Psychic</div></div>
+	<div class="translate-wrapper type-box" style="left:1090px;"><div class="type-text" id="Bug">Bug</div></div>
+	<div class="translate-wrapper type-box" style="left:1189px;"><div class="type-text" id="Rock">Rock</div></div>
+	<div class="translate-wrapper type-box" style="left:1288px;"><div class="type-text" id="Ghost">Ghost</div></div>
+	<div class="translate-wrapper type-box" style="left:1387px;"><div class="type-text" id="Dragon">Dragon</div></div>
+	<div class="translate-wrapper type-box" style="left:1486px;"><div class="type-text" id="Dark">Dark</div></div>
+	<div class="translate-wrapper type-box" style="left:1585px;"><div class="type-text" id="Steel">Steel</div></div>
+	<div class="translate-wrapper type-box" style="left:1684px;"><div class="type-text" id="Fairy">Fairy</div></div>
+	<div class="translate-wrapper type-box" style="left:1783px;"><div class="type-text" id="Starter">Starter</div></div>
+	<div class="translate-wrapper type-box" style="left:1882px;"><div class="type-text" style="font-size:22;" id="GimmickForm">Gimmick<br>Form</div></div>
+	<div class="translate-wrapper type-box" style="left:1981px;"><div class="type-text" id="Legend">Legend</div></div>
+	<div class="translate-wrapper type-box" style="left:2080px;"><div class="type-text" id="FavAlone">Favorite</div></div>
+</div>
+</div>
+<div id="credits">
+	<b>Updates</b><br>
+	• Teal Mask Pokemon and their shinies have been added!<br>
+	• Indigo Disk mons will be added once we have types and sprites.<br>
+	• The website will now remember your choices on refresh 🍪<br>
+	• Gen 6 Gimmick now lets you choose your favorite Mega.<br>
+	• Added Baby, New Evo, and language support!<br/>
+	• Report language issues or help add new ones <a href="https://github.com/CajunAvenger/cajunavenger.github.io/issues/23">here!</a><br><br>
+	<b>Credits</b><br>
+	<a href="https://github.com/CajunAvenger/cajunavenger.github.io">Source Code</a> - <a href="https://github.com/CajunAvenger/cajunavenger.github.io/issues">Issues or Feature Requests?</a> - <a href="https://twitter.com/cajunwritescode">Twitter</a><br />
+	• Walking Wake and Iron Leaves sprites by <a href="https://twitter.com/JordanosArt">JordanosArt</a><br>
+	• Archaludon, Dipplin, Iron Crown, Raging Bolt, Okidogi, and Terapagos from <a href="https://www.deviantart.com/retronc">RetroNC</a>.<br>
+	• Other later generation sprites from the <a href="https://reliccastle.com/resources/1101/">Gen 8<a> and <a href="https://reliccastle.com/resources/952/">Gen 9</a> Resource Packs, and <a href="https://github.com/PokeAPI/sprites/">PokeAPI</a><br />
+	• If you want to support more code silliness, you can donate to my <s>caffeine addiction</s> <a href="https://ko-fi.com/cajun42">Ko-Fi</a>.<br />
+</div>
 </body>
 </html>

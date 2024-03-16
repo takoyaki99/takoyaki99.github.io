@@ -1,0 +1,191 @@
+English: Gimmick<br/>Form
+Translation: Besondere Form
+
+English: Pseudo Legend
+Translation: Pseudo Legänderes
+
+English: Box Legendary
+Translation: Cover Legänderes
+
+English: Download Image
+Translation: Bild Herunterladen
+
+English: Alternate download link
+Translation: Andere Download Möglichkeit
+
+English: Export Choices
+Translation: Auswahl Exportieren
+
+English: Import Choices
+Translation: Auswahl Importieren
+
+English: Reset the grid!
+Translation: Auswahl zurücksetzten!
+
+English: Are you sure you want to reset the grid?
+Translation: Bist du dir sicher, dass du deine Auswahl zurücksetzten willst?
+
+English: Don't like my choices? You can overrule them here!
+Translation: Dir geallen die Auswahlmöglichkeiten nicht? Du kannst sie hier überschreiben!
+
+English: Export Choices will put a text version of the grid here
+Translation: Beim Auswahl Exportieren entsteht hier eine Text-Version!
+
+English: Then you can edit the names and Import Choices to replace the images.
+Translation: Dann kannst du die Namen bearbeiten und Auswahl Importieren um die Bilder zu ersetzen.
+
+English: Most Pokemon are just their named capitalized, like SWELLOW.
+Translation: Die meisten Pokemon namen sind in Großbuchstaben und auf Englisch geschrieben.
+
+English: Alternate forms have specific tags, like MEOWTH_2 for Galarian Meowth.
+Translation: Alternative Formen haben spezielle Namen, zum Beispiel MEOWTH_2 für galar Mauzi.
+
+English: You can also use this to keep backups
+Translation: Du kannst den Text auch als Backup benutzen.
+
+English: Spinda's spots can be randomized or manually placed.<br/>Each box pair in the corners moves its nearest spot.<br/>Up/Down on the first box moves it Right/Left.<br/>Up/Down on the second box moves it Up/Down.
+Translation: Pandirs Flecken können zufällig oder manuell plaziert werden. Jede Box bewegt jewils den ihr nächsten Fleck. +/- bei der ersten Box, bewegt den Fleck nach links oder rechts. +/- bei der zweiten Box bewegt den Fleck hoch oder runter.
+
+English: Click a team box, then a Pokémon from the grid to copy it to the box.
+Translation: Klick auf eine der 6 Team-Felder, dann auf ein Pokemon aus deiner Auswahl, um es ins Team zu kopieren.
+
+English: Picking...
+Translation: Wählen...
+
+English: Click the Shiny Charm, then click Pokemon to make them shiny.
+Translation: Klick auf den Schillerpin, dann auf ein Pokemon um dieses zu seinem Shiny zu machen.
+
+English: Or click here to make everything shiny.
+Translation: Oder klicke hier, um alle Pokemon shiny zu machen.
+
+English: Randomize!
+Translation: Zufallswahl!
+
+English: This site uses cookies to save your choices. You can disable them here.
+Translation: Diese Seite verwendet Cookies um deine Wahl zu speichern. Du kannst sie hier deaktivieren.
+
+English: This site uses cookies to save your choices. You can enable them here.
+Translation: Diese Seite verwendet Cookies um deine Wahl zu speichern. Du kannst sie hier aktievieren.
+
+English: Pikachu Clone
+Translation: Pikachu Klon
+
+English: Eeveelution
+Translation: Evoli Entwicklung
+
+English: Favorite
+Translation: lieblings
+
+English: Team
+Translation: Team
+
+English: Regional
+Translation: Regional
+
+English: Regional Bird
+Translation: Regiaonalvogel
+
+English: Regional Mammal
+Translation: Route 1 Normal Pokemon
+
+English: Regional Bug
+Translation: Ragionalkäfer
+
+English: Fossil
+Translation: Fossil
+
+English: Regional Form
+Translation: Regionalform
+
+English: Gigantamax
+Translation: Gigadynamax
+
+English: Mythical
+Translation: Mysteriös
+
+English: Ultra Beast
+Translation: Ultra Bestie
+
+English: Paradox
+Translation: Paradox
+
+English: Type
+Translation: Type
+
+English: Poké Ball
+Translation: Pokéball
+
+English: Baby
+Translation: Baby
+
+English: New Evo
+Translation: Neue Entwicklung
+
+English: Spinda
+Translation: Pandir
+
+English: Vivillon
+Translation: Vivillon
+
+English: Alcremie
+Translation: Pokusan
+
+English: Normal
+Translation: Normal
+
+English: Fire
+Translation: Feuer
+
+English: Water
+Translation: Wasser
+
+English: Grass
+Translation: Pflanze
+
+English: Electric
+Translation: Elektro
+
+English: Ice
+Translation: Eis
+
+English: Fighting
+Translation: Kampf
+
+English: Poison
+Translation: Gift
+
+English: Ground
+Translation: Boden
+
+English: Flying
+Translation: Flug
+
+English: Psychic
+Translation: Psycho
+
+English: Bug
+Translation: Käfer
+
+English: Rock
+Translation: Gestein
+
+English: Ghost
+Translation: Geist
+
+English: Dragon
+Translation: Drache
+
+English: Dark
+Translation: Unlicht
+
+English: Steel
+Translation: Stahl
+
+English: Fairy
+Translation: Fee
+
+English: Starter
+Translation: Starter
+
+English: Legend
+Translation: Legänderes

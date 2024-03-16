@@ -1,0 +1,192 @@
+English: Gimmick<br/>Form
+Translation: 
+
+English: Pseudo Legend
+Translation: 
+
+English: Box Legendary
+Translation: 
+
+English: Download Image
+Translation: 
+
+English: Alternate download link
+Translation: 
+
+English: Export Choices
+Translation: 
+
+English: Import Choices
+Translation: 
+
+English: Reset the grid!
+Translation: 
+
+English: Are you sure you want to reset the grid?
+Translation: 
+
+English: Don't like my choices? You can overrule them here!
+Translation: 
+
+English: Export Choices will put a text version of the grid here
+Translation: 
+
+English: Then you can edit the names and Import Choices to replace the images.
+Translation: 
+
+English: Most Pokemon are just their named capitalized, like SWELLOW.
+Translation: 
+
+English: Alternate forms have specific tags, like MEOWTH_2 for Galarian Meowth.
+Translation: 
+
+English: You can also use this to keep backups
+Translation: 
+
+English: Spinda's spots can be randomized or manually placed.<br/>Each box pair in the corners moves its nearest spot.<br/>Up/Down on the first box moves it Right/Left.<br/>Up/Down on the second box moves it Up/Down.
+Translation: 
+
+English: Click a team box, then a Pokémon from the grid to copy it to the box.
+Translation: 
+
+English: Picking...
+Translation: 
+
+English: Click the Shiny Charm, then click Pokemon to make them shiny.
+Translation: 
+
+English: Or click here to make everything shiny.
+Translation: 
+
+English: Randomize!
+Translation: 
+
+English: This site uses cookies to save your choices. You can disable them here.
+Translation: 
+
+English: This site uses cookies to save your choices. You can enable them here.
+Translation: 
+
+English: Pikachu Clone
+Translation: 
+
+English: Eeveelution
+Translation: 
+
+English: Favorite
+Translation: 
+
+English: Team
+Translation: 
+
+English: Regional 
+Translation: 
+
+English: Regional Bird
+Translation: 
+
+English: Regional Mammal
+Translation: 
+
+English: Regional Bug
+Translation: 
+
+English: Fossil
+Translation: 
+
+English: Regional Form
+Translation: 
+
+English: Gigantamax
+Translation: 
+
+English: Mythical
+Translation: Mítico
+
+English: Ultra Beast
+Translation: 
+
+English: Paradox
+Translation: 
+
+English: Type
+Translation: 
+
+English: Poké Ball
+Translation: 
+
+English: Baby
+Translation: 
+
+English: New Evo
+Translation: 
+
+English: Spinda
+Translation: 
+
+English: Vivillon
+Translation: 
+
+English: Alcremie
+Translation: 
+
+English: Normal
+Translation: 
+
+English: Fire
+Translation: 
+
+English: Water
+Translation: 
+
+English: Grass
+Translation: 
+
+English: Electric
+Translation: 
+
+English: Ice
+Translation: 
+
+English: Fighting
+Translation: 
+
+English: Poison
+Translation: 
+
+English: Ground
+Translation: 
+
+English: Flying
+Translation: 
+
+English: Psychic
+Translation: 
+
+English: Bug
+Translation: 
+
+English: Rock
+Translation: 
+
+English: Ghost
+Translation: 
+
+English: Dragon
+Translation: 
+
+English: Dark
+Translation: 
+
+English: Steel
+Translation: 
+
+English: Fairy
+Translation: 
+
+English: Starter
+Translation: 
+
+English: Legend
+Translation: 
+

@@ -1,0 +1,192 @@
+English: Gimmick<br/>Form
+Translation: Forme à<br/>Gimmick
+
+English: Pseudo Legend
+Translation: Pseudo-Légendaire
+
+English: Box Legendary
+Translation: Légendaire de Boîte
+
+English: Download Image
+Translation: Télécharger l'image
+
+English: Alternate download link
+Translation: Lien alternatif de téléchargement
+
+English: Export Choices
+Translation: Exporter les choix
+
+English: Import Choices
+Translation: Importer les choix
+
+English: Reset the grid!
+Translation: Réinitialiser la grille
+
+English: Are you sure you want to reset the grid?
+Translation: Étes-vous sûrs que vous voulez réinitialiser la grille ?
+
+English: Don't like my choices? You can overrule them here!
+Translation: # Vous n'aimez pas mes choix ? Vous pouvez les écraser ici !
+
+English: Export Code will put a text version of the grid here
+Translation: # Exporter les choix va mettre une version textuelle de la grille ici
+
+English: Then you can edit the names and Import Choices to replace the images.
+Translation: # Vous pouvez alors éditer les noms et Importer les choix pour remplacer les images.
+
+English: Most Pokemon are just their named capitalized, like SWELLOW.
+Translation: # La plupart des noms de Pokémon sont en majuscules, comme SWELLOW
+
+English: Alternate forms have specific tags, like MEOWTH_2 for Galarian Meowth.
+Translation: # Les formes alternatives ont des indices spéciaux, comme MEOWTH_2 pour Miaouss de Galar
+
+English: You can also use this to keep backups
+Translation: # Vous pouvez aussi l'utiliser pour sauvegarder vos choix
+
+English: Spinda's spots can be randomized or manually placed.<br/>Each box pair in the corners moves its nearest spot.<br/>Up/Down on the first box moves it Right/Left.<br/>Up/Down on the second box moves it Up/Down.
+Translation: Les tâches de Spinda peuvent être placées aléatoirement ou à la main<br/>Chaque paire de chiffre dans les coins déplace la tâche la plus proche<br/>Haut/Bas dans la première la déplace vers la Gauche/Droite<br/>Haut/Bas dans la seconde la déplace vers le Haut/Bas
+
+English: Click a team box, then a Pokémon from the grid to copy it to the box.
+Translation: Cliquez sur une place dans votre équipe, puis un Pokémon de la grille pour l'y copier
+
+English: Picking...
+Translation: Choix en cours...
+
+English: Click the Shiny Charm, then click Pokemon to make them shiny.
+Translation: Cliquez sur le Charme Chroma, puis cliquez sur un Pokemon pour le rendre shiny.
+
+English: Or click here to make everything shiny.
+Translation: Ou cliquez ici pour les rendres tous shiny
+
+English: Randomize!
+Translation: Aléatoire!
+
+English: This site uses cookies to save your choices. You can disable them here.
+Translation: Ce site utilise des cookies pour enregistrer vos choix. Vous pouvez les désactiver ici.
+
+English: This site uses cookies to save your choices. You can enable them here.
+Translation: Ce site utilise des cookies pour enregistrer vos choix. Vous pouvez les activer ici.
+
+English: Pikachu Clone
+Translation: Clone de Pikachu
+
+English: Eeveelution
+Translation: Évolition
+
+English: Favorite
+Translation: Préféré
+
+English: Team
+Translation: Équipe
+
+English: Regional 
+Translation:  Régional
+
+English: Regional Bird
+Translation: Oiseau Régional
+
+English: Regional Mammal
+Translation: Mammifère Régional
+
+English: Regional Bug
+Translation: Insecte Régional
+
+English: Fossil
+Translation: Fossile
+
+English: Regional Form
+Translation: Forme Régionale
+
+English: Gigantamax
+Translation: Gigamax
+
+English: Mythical
+Translation: Pokémon Fabuleux
+
+English: Ultra Beast
+Translation: Ultra-Chimère
+
+English: Paradox
+Translation: Pokémon Paradoxe
+
+English: Type
+Translation: Type
+
+English: Poké Ball
+Translation: Poké Ball
+
+English: Baby
+Translation: Bébé 
+
+English: New Evo
+Translation: Nouvelle<br/>évolution
+
+English: Spinda
+Translation: Spinda
+
+English: Vivillon
+Translation: Prismillon
+
+English: Alcremie
+Translation: Charmilly
+
+English: Normal
+Translation: Normal
+
+English: Fire
+Translation: Feu
+
+English: Water
+Translation: Eau
+
+English: Grass
+Translation: Plante
+
+English: Electric
+Translation: Électrik
+
+English: Ice
+Translation: Glace
+
+English: Fighting
+Translation: Combat
+
+English: Poison
+Translation: Poison
+
+English: Ground
+Translation: Sol
+
+English: Flying
+Translation: Vol
+
+English: Psychic
+Translation: Psy
+
+English: Bug
+Translation: Insecte
+
+English: Rock
+Translation: Roche
+
+English: Ghost
+Translation: Spectre
+
+English: Dragon
+Translation: Dragon
+
+English: Dark
+Translation: Ténèbres
+
+English: Steel
+Translation: Acier
+
+English: Fairy
+Translation: Fée
+
+English: Starter
+Translation: Starter
+
+English: Legend
+Translation: Légendes
+
